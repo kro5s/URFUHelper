@@ -1,35 +1,38 @@
 import React, {useState} from 'react';
+import {FormattedMessage, useIntl} from "react-intl";
 
 const ContactUs = () => {
+    const intl = useIntl()
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
     return (
         <section className="py-28 text-center">
-            <h2 className="text-4xl font-semibold">Contact us</h2>
-            <div className="mt-4"><span className="font-medium text-xl">If you found translation issues or bugs</span></div>
+            <h2 className="text-4xl font-semibold"><FormattedMessage id="contact_us" /></h2>
+            <div className="mt-4"><span className="font-medium text-xl"><FormattedMessage id="found_translation_issues" /></span></div>
             <div className="flex items-center justify-between gap-x-20 max-w-[970px] bg-primary-black rounded-[30px] p-16 mx-auto mt-10">
                 <form className="text-left text-white">
                     <div className="flex justify-between gap-x-8">
                         <div>
-                            <div className="mb-2"><label htmlFor="contactusname">Name</label></div>
+                            <div className="mb-2"><label htmlFor="contactusname"><FormattedMessage id="name" /></label></div>
                             <input type="text" id="contactusname"
                                    className="outline-none py-2 px-4 rounded-2xl text-primary-black"
-                                   placeholder="Your name"/>
+                                   placeholder={intl.formatMessage({ id: "name_placeholder" })}/>
                         </div>
                         <div>
-                            <div className="mb-2"><label htmlFor="contactusemail">Email</label></div>
+                            <div className="mb-2"><label htmlFor="contactusemail"><FormattedMessage id="email" /></label></div>
                             <input type="text" id="contactusemail"
                                    className="outline-none py-2 px-4 rounded-2xl text-primary-black"
                                    placeholder="example@gmail.com"/>
                         </div>
                     </div>
-                    <div className="mb-2 mt-4"><label htmlFor="contactusmessage">Message</label></div>
+                    <div className="mb-2 mt-4"><label htmlFor="contactusmessage"><FormattedMessage id="message" /></label></div>
                     <textarea id="contactusmessage"
                               className="outline-none resize-none p-4 rounded-2xl text-primary-black w-full min-h-[150px]"
-                              placeholder="Your message"></textarea>
-                    <button type="submit" className="font-semibold bg-accent rounded-2xl py-2 px-4 mt-10">Submit</button>
+                              placeholder={intl.formatMessage({ id: "message_placeholder" })}></textarea>
+                    <button type="submit" className="font-semibold bg-accent rounded-2xl py-2 px-4 mt-10"><FormattedMessage id="submit" /></button>
                 </form>
                 <svg width="283" height="283" viewBox="0 0 283 283" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
