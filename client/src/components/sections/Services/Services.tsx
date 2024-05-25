@@ -1,36 +1,28 @@
-import React, {ChangeEvent, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, useMemo, useRef, useState} from 'react';
 import Search from "../../ui/Search/Search";
 import {InstitutesTypes} from "../../../types/types";
-import {useAppDispatch, useAppSelector, useCloseByClickingOutside} from "../../../hooks/hooks";
-import {fetchServices, selectAllServices} from "../../../store/slices/servicesSlice";
+import {useAppSelector, useCloseByClickingOutside} from "../../../hooks/hooks";
 import ServiceCard from "../../ServiceCard/ServiceCard";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {selectLanguage} from "../../../store/slices/localizationSlice";
 import {FormattedMessage, useIntl} from "react-intl";
+import {useGetServicesQuery} from "../../../store/slices/apiSlice";
 
 const Services = () => {
     const intl = useIntl()
-    const dispatch = useAppDispatch()
     const language = useAppSelector(selectLanguage)
-
     const navigate = useNavigate();
     const [params] = useSearchParams();
 
     const [query, setQuery] = useState('');
-    const [instituteFilter, setInstituteFilter] = useState<InstitutesTypes>(params.get("filter") as InstitutesTypes || InstitutesTypes.IRIT);
-    const [instituteFilterOpened, setInstituteFilterOpened] = useState(false);
-    const dropdownInstituteFilter = useRef(null);
-
-    const services = useAppSelector(selectAllServices);
-
-    const filteredServices = services.filter(service => {
-        const instituteFiltered = instituteFilter ? service.institute === instituteFilter : true;
-        return service.name.toLowerCase().includes(query.toLowerCase()) && instituteFiltered;
-    })
 
     const handleQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value)
     }
+
+    const [instituteFilter, setInstituteFilter] = useState<InstitutesTypes>(params.get("filter") as InstitutesTypes || InstitutesTypes.IRIT);
+    const [instituteFilterOpened, setInstituteFilterOpened] = useState(false);
+    const dropdownInstituteFilter = useRef(null);
 
     const handleFilterOpen = () => {
         setInstituteFilterOpened(!instituteFilterOpened);
@@ -46,9 +38,15 @@ const Services = () => {
 
     useCloseByClickingOutside(instituteFilterOpened, setInstituteFilterOpened, dropdownInstituteFilter)
 
-    useEffect(() => {
-        dispatch(fetchServices({ lang: language }))
-    }, [language])
+    const { data: services = [] } = useGetServicesQuery(language)
+
+    const filteredServices = useMemo(() => {
+        return services.filter(service => {
+            const instituteFiltered = instituteFilter ? service.institute === instituteFilter : true;
+            return service.name.toLowerCase().includes(query.toLowerCase()) && instituteFiltered;
+        })
+    }, [services, instituteFilter, query])
+
 
     return (
         <section className="pt-12 pb-32">

@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from "../../ui/Button/Button";
 import {useAppSelector} from "../../../hooks/hooks";
-import {selectNQuestions} from "../../../store/slices/questionsSlice";
 import Community from "../../Community/Community";
 import {selectNCommunities} from "../../../store/slices/communitiesSlice";
 import {FormattedMessage} from "react-intl";

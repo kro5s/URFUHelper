@@ -1,30 +1,24 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import Layout from "../components/Layout/Layout";
 import Search from "../components/ui/Search/Search";
-import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import {fetchQuestions, selectAllQuestions} from "../store/slices/questionsSlice";
+import {useAppSelector} from "../hooks/hooks";
 import Question from "../components/Question/Question";
 import {selectLanguage} from "../store/slices/localizationSlice";
 import {FormattedMessage, useIntl} from "react-intl";
+import {useGetQuestionsQuery} from "../store/slices/apiSlice";
 
 const QuestionsRoute = () => {
-    const dispatch = useAppDispatch()
     const language = useAppSelector(selectLanguage)
     const intl = useIntl()
 
     const [query, setQuery] = useState('')
-    const questions = useAppSelector(selectAllQuestions)
+    const { data: questions = [] } = useGetQuestionsQuery(language)
 
     const filteredQuestions = questions.filter(question => question.question.toLowerCase().includes(query.toLowerCase()))
 
     const handleQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value)
     }
-
-    useEffect(() => {
-        dispatch(fetchQuestions({ lang: language }))
-    }, [language]);
-
     return (
         <Layout>
             <section className="pt-12 pb-32">

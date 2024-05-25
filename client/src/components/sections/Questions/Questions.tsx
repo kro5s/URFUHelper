@@ -1,19 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Button, {ButtonTypes} from "../../ui/Button/Button";
-import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {fetchQuestions, selectNQuestions} from "../../../store/slices/questionsSlice";
+import {useAppSelector} from "../../../hooks/hooks";
 import Question from "../../Question/Question";
 import {FormattedMessage} from "react-intl";
 import {selectLanguage} from "../../../store/slices/localizationSlice";
+import {useGetQuestionsQuery} from "../../../store/slices/apiSlice";
 
 const Questions = () => {
-    const dispatch = useAppDispatch()
     const language = useAppSelector(selectLanguage)
-    const questions = useAppSelector(state => selectNQuestions(state, 5))
 
-    useEffect(() => {
-        dispatch(fetchQuestions({lang: language}))
-    }, [language]);
+    let { data: questions = [] } = useGetQuestionsQuery(language)
+
+    questions = questions.slice(0, 5)
 
     return (
         <section className="bg-primary-black py-28 text-white text-center">

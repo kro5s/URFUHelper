@@ -1,23 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import Layout from "../components/Layout/Layout";
-import {InstitutesTypes, Locales} from "../types/types";
-import {useAppDispatch, useAppSelector, useCloseByClickingOutside} from "../hooks/hooks";
-import {fetchExperiences, selectAllExperience} from "../store/slices/experienceSlice";
-import exp from "node:constants";
+import {useAppSelector} from "../hooks/hooks";
 import ExperienceCard from "../components/ExperienceCard/ExperienceCard";
 import {FormattedMessage} from "react-intl";
 import {selectLanguage} from "../store/slices/localizationSlice";
+import {useGetExperiencesQuery} from "../store/slices/apiSlice";
 
 const ExperiencesRoute = () => {
-    const dispatch = useAppDispatch()
     const language = useAppSelector(selectLanguage)
 
-    const experiences = useAppSelector(selectAllExperience)
+    const { data: experiences = [] } = useGetExperiencesQuery(language)
     const filteredExperiences = experiences.filter(experience => experience.language === language)
-
-    useEffect(() => {
-        dispatch(fetchExperiences({lang: language}))
-    }, [language])
 
     return (
         <Layout>

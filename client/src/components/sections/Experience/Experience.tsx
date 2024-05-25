@@ -1,21 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Button from "../../ui/Button/Button";
 import ExperienceCard from "../../ExperienceCard/ExperienceCard";
-import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {fetchExperiences, selectNExperiences} from "../../../store/slices/experienceSlice";
+import {useAppSelector} from "../../../hooks/hooks";
 import {FormattedMessage} from "react-intl";
 import {selectLanguage} from "../../../store/slices/localizationSlice";
+import {useGetExperiencesQuery} from "../../../store/slices/apiSlice";
 
 const Experience = () => {
-    const dispatch = useAppDispatch()
     const language = useAppSelector(selectLanguage)
-    const experiences = useAppSelector(state => selectNExperiences(state, 4))
 
-    const filteredExperiences = experiences.filter(experience => experience.language === language)
+    const { data: experiences = [] } = useGetExperiencesQuery(language)
+    const filteredExperiences = experiences.slice(0, 4).filter(experience => experience.language === language)
 
-    useEffect(() => {
-        dispatch(fetchExperiences({lang: language}))
-    }, [language]);
     
     return (
         <section className="py-28">
