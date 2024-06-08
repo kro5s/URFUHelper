@@ -7,7 +7,7 @@ interface IInitialState {
 }
 
 const initialState : IInitialState = {
-    language: Locales.ENGLISH
+    language: localStorage.getItem('language') as Locales || Locales.ENGLISH
 }
 
 const localizationSlice = createSlice({
@@ -16,6 +16,7 @@ const localizationSlice = createSlice({
     reducers: {
         changeLocalization(state, action) {
             state.language = action.payload
+            localStorage.setItem('language', action.payload)
         }
     }
 })
