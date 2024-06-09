@@ -3,7 +3,7 @@ import {RootState} from "../store";
 
 const reportSlice = createSlice({
     name: "report",
-    initialState: true,
+    initialState: (window.innerWidth) >= 768,
     reducers: {
         closeReport(state, action) {
             return false;

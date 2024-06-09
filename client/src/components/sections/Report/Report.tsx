@@ -11,7 +11,7 @@ const Report = () => {
 
     return (
         <section className="bg-[#222222] py-4 relative">
-            <div className="my-container text-center">
+            <div className="text-center max-w-[60%] md:max-w-[80%] mx-auto">
                 <span className="text-white">
                     Hi, if you found translation issues on this page, you can <a href="#"
                                                                                  className="text-[#0072C9] underline">report it</a>, or <a

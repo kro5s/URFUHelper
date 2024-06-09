@@ -6,7 +6,7 @@ const Features = () => {
 
     return (
         <section className="bg-primary-black pt-24 pb-24 text-white">
-            <ul className="my-container flex items-start justify-between">
+            <ul className="my-container flex items-center justify-between flex-col gap-8 md:flex-row md:items-start">
                 <li>
                     <Feature title={intl.formatMessage({id: "find_services"})} icon={
                         <svg width="79" height="79" viewBox="0 0 79 79" fill="none" xmlns="http://www.w3.org/2000/svg">
