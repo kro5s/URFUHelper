@@ -3,6 +3,7 @@ import {FormattedMessage} from "react-intl";
 import {useAppDispatch, useAppSelector, useCloseByClickingOutside} from "../../../hooks/hooks";
 import {localizationsActions, selectLanguage} from "../../../store/slices/localizationSlice";
 import {Locales} from "../../../types/types";
+import DropdownMenu from "../../ui/DropdownMenu/DropdownMenu";
 
 const Welcome = () => {
     const dispatch = useAppDispatch()
@@ -19,14 +20,18 @@ const Welcome = () => {
     }
 
     return (
-        <section className="py-28 text-center">
-            <img className="mx-auto" src={require("../../../assets/images/welcome.png")} alt="Greetings in different languages"/>
-            <h1 className="pt-24 pb-6 text-4xl font-semibold"><FormattedMessage id="get_help_adaptation" /></h1>
-            <p className="text-black/[0.2] text-xl font-medium"><FormattedMessage id="you_can_choose" /></p>
-            <div ref={dropdownParent} className="mt-12 relative w-fit mx-auto" >
-                <div className="inline-flex items-center gap-x-6 cursor-pointer" onClick={() => setDropdownOpened(!dropdownOpened)}>
+        <section className="pt-14 pb-20 md:py-28 text-center">
+            <img className="mx-auto px-2.5" src={require("../../../assets/images/welcome.png")}
+                 alt="Greetings in different languages"/>
+            <h1 className="pt-24 pb-6 text-2xl md:text-4xl font-semibold"><FormattedMessage id="get_help_adaptation"/>
+            </h1>
+            <p className="text-black/[0.2] text-lg font-regular md:text-xl md:font-medium"><FormattedMessage
+                id="you_can_choose"/></p>
+            <div ref={dropdownParent} className="mt-12 relative w-fit mx-auto">
+                <div className="inline-flex items-center gap-x-6 cursor-pointer"
+                     onClick={() => setDropdownOpened(!dropdownOpened)}>
                     <img src={require(`../../../assets/flags/${language}.png`)} alt="flag"
-                         className="w-24 h-16 rounded-2xl border border-black/[0.2]"/>
+                         className="w-16 h-[45px] rounded-xl md:w-24 md:h-16 md:rounded-2xl border border-black/[0.2]"/>
                     <button>
                         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -35,30 +40,18 @@ const Welcome = () => {
                         </svg>
                     </button>
                 </div>
-                {
-                    dropdownOpened &&
-                    <div
-                        className="px-6 py-4 border border-primary-black/[0.2] absolute top-20 left-0 bg-white rounded-2xl text-left">
-                        <ul className="space-y-3">
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeLanguage(Locales.ENGLISH)}>
-                                English
-                            </li>
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeLanguage(Locales.RUSSIAN)}>
-                                Русский
-                            </li>
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeLanguage(Locales.ARABIAN)}>
-                                العربية
-                            </li>
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeLanguage(Locales.SPANISH)}>
-                                Español
-                            </li>
-                        </ul>
-                    </div>
-                }
+                <DropdownMenu parent={dropdownParent} opened={dropdownOpened} setOpened={setDropdownOpened}
+                              className="px-6 py-4 border border-primary-black/[0.2] bg-white rounded-2xl text-left space-y-4 top-20"
+                >
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeLanguage(Locales.ENGLISH)}>English</DropdownMenu.Item>
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeLanguage(Locales.RUSSIAN)}>Русский</DropdownMenu.Item>
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeLanguage(Locales.ARABIAN)}>العربية</DropdownMenu.Item>
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeLanguage(Locales.SPANISH)}>Español</DropdownMenu.Item>
+                </DropdownMenu>
             </div>
         </section>
     );

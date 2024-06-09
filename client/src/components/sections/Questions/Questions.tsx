@@ -14,9 +14,9 @@ const Questions = () => {
     questions = questions.slice(0, 5)
 
     return (
-        <section className="bg-primary-black py-28 text-white text-center">
+        <section className="bg-primary-black py-20 md:py-28 text-white text-center">
             <h2 className="text-4xl font-semibold"><FormattedMessage id="popular_questions" /></h2>
-            <div className="flex flex-col max-w-[970px] my-20 mx-auto gap-y-8">
+            <div className="flex flex-col max-w-[970px] my-20 mx-auto gap-y-8 px-6">
                 {
                     questions.map(({id, question, answer}) => (
                         <Question key={id} question={question} answer={answer} />

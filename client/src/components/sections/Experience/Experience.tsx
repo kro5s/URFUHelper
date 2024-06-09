@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import Button from "../../ui/Button/Button";
 import ExperienceCard from "../../ExperienceCard/ExperienceCard";
 import {useAppSelector} from "../../../hooks/hooks";
@@ -10,17 +10,22 @@ const Experience = () => {
     const language = useAppSelector(selectLanguage)
 
     const { data: experiences = [] } = useGetExperiencesQuery(language)
-    const filteredExperiences = experiences.slice(0, 4).filter(experience => experience.language === language)
+    const innerWidth = useMemo(() => {
+        return window.innerWidth
+    }, [window])
 
+    const experiencesToRender = innerWidth > 768 ? 4 : 2
+
+    const filteredExperiences = experiences.slice(0, experiencesToRender).filter(experience => experience.language === language)
     
     return (
-        <section className="py-28">
+        <section className="py-20 md:py-28">
             <div className="my-container text-center">
                 <h2 className="text-4xl font-semibold"><FormattedMessage id="share_experience" /></h2>
                 {
                     filteredExperiences.length > 0
                         ?
-                        <div className="grid gap-x-7 gap-y-12 grid-cols-2 my-16">
+                        <div className="grid gap-x-7 gap-y-12 my-16 grid-cols-1 md:grid-cols-2">
                             {
                                 filteredExperiences.map(experience => (
                                     <ExperienceCard key={experience.id} avatar={experience.img}

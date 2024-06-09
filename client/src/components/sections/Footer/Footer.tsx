@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className="bg-primary-black py-10 text-white absolute left-0 right-0 bottom-0">
             <div className="my-container flex items-center justify-between">
                 <span className="font-bold">URFUHelper</span>
-                <span>loremipsum@gmail.com</span>
+                <span className="hidden md:inline">loremipsum@gmail.com</span>
                 <ul className="flex items-center gap-x-4">
                     <li>
                         <a href="https://telegram.org/" target="_blank">
