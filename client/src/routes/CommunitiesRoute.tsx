@@ -27,7 +27,7 @@ const CommunitiesRoute = () => {
                     {
                         filteredCommunities.length > 0
                             ?
-                            <div className="grid grid-cols-4 max-w-[970px] mx-auto gap-x-6 gap-y-10 justify-items-center">
+                            <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] max-w-[970px] mx-auto gap-x-6 gap-y-10 justify-items-center">
                                 {
                                     filteredCommunities.map(community => (
                                         <Community key={community.id} country={community.country} vkLink={community.vkLink}

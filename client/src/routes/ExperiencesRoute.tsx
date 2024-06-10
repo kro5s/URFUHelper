@@ -20,7 +20,7 @@ const ExperiencesRoute = () => {
                     {
                         filteredExperiences.length > 0
                             ?
-                            <div className="grid grid-cols-2 gap-x-6 gap-y-10 mt-16">
+                            <div className="grid grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))] gap-x-6 gap-y-10 mt-16">
                                 {
                                     filteredExperiences.map(experience => (
                                         <ExperienceCard key={experience.id} avatar={experience.img}
