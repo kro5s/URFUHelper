@@ -9,24 +9,26 @@ const Institutes = () => {
 
     return (
         <section className="py-20 md:py-28 bg-primary-black text-center text-white">
-            <h2 className="text-4xl font-semibold mb-8"><FormattedMessage id="most_used" /></h2>
-            <div><span className="font-medium text-xl"><FormattedMessage id="choose_institute" /></span></div>
-            <ul className="flex justify-center mt-10 mb-20 gap-8 flex-col items-center md:flex-row md:items-stretch">
-                <li>
-                    <Link to={`/services?filter=${InstitutesTypes.IRIT}`}>
-                        <Institute img={require("../../../assets/institutes/iritrtf.jpg")}
-                                   name={intl.formatMessage({ id: "IRIT" })}/>
-                    </Link>
-                </li>
-                <li>
-                    <Link to={`/services?filter=${InstitutesTypes.INMT}`}>
-                        <Institute
-                            img={require("../../../assets/institutes/inmt.jpg")}
-                            name={intl.formatMessage({ id: "INMT" })}/>
-                    </Link>
-                </li>
-            </ul>
-            <Button link="/services" type={ButtonTypes.ACCENT}><FormattedMessage id="show_more" /></Button>
+            <div className="my-container">
+                <h2 className="text-4xl font-semibold mb-8"><FormattedMessage id="most_used"/></h2>
+                <div><span className="font-medium text-xl"><FormattedMessage id="choose_institute"/></span></div>
+                <ul className="flex justify-center mt-10 mb-20 gap-8 flex-col items-center md:flex-row md:items-stretch">
+                    <li>
+                        <Link to={`/services?filter=${InstitutesTypes.IRIT}`}>
+                            <Institute img={require("../../../assets/institutes/iritrtf.jpg")}
+                                       name={intl.formatMessage({id: "IRIT"})}/>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to={`/services?filter=${InstitutesTypes.INMT}`}>
+                            <Institute
+                                img={require("../../../assets/institutes/inmt.jpg")}
+                                name={intl.formatMessage({id: "INMT"})}/>
+                        </Link>
+                    </li>
+                </ul>
+                <Button link="/services" type={ButtonTypes.ACCENT}><FormattedMessage id="show_more"/></Button>
+            </div>
         </section>
     );
 };
