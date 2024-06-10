@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {FormattedMessage} from "react-intl";
-import {useAppDispatch, useAppSelector, useCloseByClickingOutside} from "../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {localizationsActions, selectLanguage} from "../../../store/slices/localizationSlice";
 import {Locales} from "../../../types/types";
 import DropdownMenu from "../../ui/DropdownMenu/DropdownMenu";
@@ -10,8 +10,6 @@ const Welcome = () => {
     const [dropdownOpened, setDropdownOpened] = useState(false)
     const language = useAppSelector(selectLanguage)
     const dropdownParent = useRef(null)
-
-    useCloseByClickingOutside(dropdownOpened, setDropdownOpened, dropdownParent)
 
     const changeLanguage = (language: Locales) => {
         return () => {

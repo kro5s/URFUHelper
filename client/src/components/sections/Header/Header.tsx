@@ -3,12 +3,13 @@ import {Link} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
 import {Locales} from "../../../types/types";
 import {localizationsActions, selectLanguage} from "../../../store/slices/localizationSlice";
-import {useAppDispatch, useAppSelector, useCloseByClickingOutside} from "../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import DropdownMenu, {DropdownPosition} from "../../ui/DropdownMenu/DropdownMenu";
 
 const Header = () => {
     const dispatch = useAppDispatch()
     const locale = useAppSelector(selectLanguage)
+    const isMobile = window.innerWidth <= 768
 
     const [languageSelectOpened, setLanguageSelectOpened] = useState(false)
     const languageSelect = useRef(null)
@@ -18,8 +19,6 @@ const Header = () => {
             dispatch(localizationsActions.changeLocalization(language))
         }
     }
-
-    useCloseByClickingOutside(languageSelectOpened, setLanguageSelectOpened, languageSelect)
 
     return (
         <header className="py-6 px-10 flex justify-between items-center">
@@ -39,7 +38,7 @@ const Header = () => {
                 <div className="w-full h-[1px] bg-black/[0.2] left-1/2 -translate-x-1/2 -bottom-10 absolute"
                      aria-hidden></div>
             </div>
-            <MobileMenu />
+            <MobileMenu/>
             <div ref={languageSelect} className="flex-shrink-0 flex items-center gap-x-2 cursor-pointer relative"
                  onClick={() => setLanguageSelectOpened(!languageSelectOpened)}>
                 <img src={require(`../../../assets/flags/${locale}.png`)} alt="flag"
@@ -52,30 +51,18 @@ const Header = () => {
                             fill="#303030"/>
                     </svg>
                 </button>
-                {
-                    languageSelectOpened &&
-                    <div
-                        className="px-6 py-4 border border-primary-black/[0.2] absolute top-10 -right-8 md:right-0 bg-white rounded-2xl text-left">
-                        <ul className="space-y-3">
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeLanguage(Locales.ENGLISH)}>
-                                English
-                            </li>
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeLanguage(Locales.RUSSIAN)}>
-                                Русский
-                            </li>
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeLanguage(Locales.ARABIAN)}>
-                                العربية
-                            </li>
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeLanguage(Locales.SPANISH)}>
-                                Español
-                            </li>
-                        </ul>
-                    </div>
-                }
+                <DropdownMenu parent={languageSelect} opened={languageSelectOpened} setOpened={setLanguageSelectOpened}
+                              position={isMobile ? undefined : DropdownPosition.RIGHT}
+                              className="px-6 py-4 border border-primary-black/[0.2] bg-white rounded-2xl text-left space-y-3">
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeLanguage(Locales.ENGLISH)}>English</DropdownMenu.Item>
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeLanguage(Locales.RUSSIAN)}>Русский</DropdownMenu.Item>
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeLanguage(Locales.ARABIAN)}>العربية</DropdownMenu.Item>
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeLanguage(Locales.SPANISH)}>Español</DropdownMenu.Item>
+                </DropdownMenu>
             </div>
         </header>
     );
@@ -94,13 +81,15 @@ const MobileMenu = () => {
                 </svg>
             </button>
             <DropdownMenu parent={menu} opened={menuOpened} setOpened={setMenuOpened}
-                          className="px-6 py-4 border border-primary-black/[0.2] rounded-2xl bg-white" position={DropdownPosition.RIGHT}
+                          className="px-6 py-4 border border-primary-black/[0.2] rounded-2xl bg-white"
+                          position={DropdownPosition.RIGHT}
             >
                 <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded">
                     <Link to="/services" className="hover:underline"><FormattedMessage id="services"/></Link>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded">
-                    <Link to="/experience" className="hover:underline"><FormattedMessage id="exchange_experience"/></Link>
+                    <Link to="/experience" className="hover:underline"><FormattedMessage
+                        id="exchange_experience"/></Link>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded">
                     <Link to="/questions" className="hover:underline"><FormattedMessage id="popular_questions"/></Link>

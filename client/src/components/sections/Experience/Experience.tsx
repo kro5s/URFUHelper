@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import Button from "../../ui/Button/Button";
 import ExperienceCard from "../../ExperienceCard/ExperienceCard";
 import {useAppSelector} from "../../../hooks/hooks";
@@ -10,11 +10,8 @@ const Experience = () => {
     const language = useAppSelector(selectLanguage)
 
     const { data: experiences = [] } = useGetExperiencesQuery(language)
-    const innerWidth = useMemo(() => {
-        return window.innerWidth
-    }, [window])
-
-    const experiencesToRender = innerWidth > 768 ? 4 : 2
+    const isMobile = window.innerWidth <= 768
+    const experiencesToRender = isMobile ? 2 : 4
 
     const filteredExperiences = experiences.slice(0, experiencesToRender).filter(experience => experience.language === language)
     

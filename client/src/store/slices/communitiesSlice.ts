@@ -1,5 +1,5 @@
 import {createSelector, createSlice} from "@reduxjs/toolkit";
-import {ICommunity, IService, LoadingStatus} from "../../types/types";
+import {ICommunity, LoadingStatus} from "../../types/types";
 import {RootState} from "../store";
 
 interface IInitialState {

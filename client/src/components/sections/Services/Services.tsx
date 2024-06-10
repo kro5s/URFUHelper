@@ -1,12 +1,13 @@
 import React, {ChangeEvent, useMemo, useRef, useState} from 'react';
 import Search from "../../ui/Search/Search";
 import {InstitutesTypes} from "../../../types/types";
-import {useAppSelector, useCloseByClickingOutside} from "../../../hooks/hooks";
+import {useAppSelector} from "../../../hooks/hooks";
 import ServiceCard from "../../ServiceCard/ServiceCard";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {selectLanguage} from "../../../store/slices/localizationSlice";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useGetServicesQuery} from "../../../store/slices/apiSlice";
+import DropdownMenu from "../../ui/DropdownMenu/DropdownMenu";
 
 const Services = () => {
     const intl = useIntl()
@@ -32,13 +33,11 @@ const Services = () => {
         return () => {
             setInstituteFilter(filter)
             setInstituteFilterOpened(false)
-            navigate("/services", { replace: true })
+            navigate("/services", {replace: true})
         }
     }
 
-    useCloseByClickingOutside(instituteFilterOpened, setInstituteFilterOpened, dropdownInstituteFilter)
-
-    const { data: services = [] } = useGetServicesQuery(language)
+    const {data: services = []} = useGetServicesQuery(language)
 
     const filteredServices = useMemo(() => {
         return services.filter(service => {
@@ -50,12 +49,13 @@ const Services = () => {
 
     return (
         <section className="pt-12 pb-32">
-            <h2 className="font-semibold text-4xl text-center"><FormattedMessage id="services" /></h2>
-            <Search onChange={handleQueryChange} query={query} placeholder={intl.formatMessage({ id: "enter_service" })} className="mt-10 mb-6"/>
+            <h2 className="font-semibold text-4xl text-center"><FormattedMessage id="services"/></h2>
+            <Search onChange={handleQueryChange} query={query} placeholder={intl.formatMessage({id: "enter_service"})}
+                    className="mt-10 mb-6"/>
             <div ref={dropdownInstituteFilter} className="text-center relative text-sm font-semibold">
                 <div className="inline-flex items-center gap-x-4 cursor-pointer"
                      onClick={handleFilterOpen}>
-                    <span><FormattedMessage id="institute" />:</span>
+                    <span><FormattedMessage id="institute"/>:</span>
                     <div className="flex items-center gap-x-2">
                         <span>{instituteFilter ? instituteFilter : "All"}</span>
                         <svg className={instituteFilterOpened ? "transition -rotate-180" : "transition"} width="9"
@@ -66,22 +66,15 @@ const Services = () => {
                         </svg>
                     </div>
                 </div>
-                {
-                    instituteFilterOpened &&
-                    <div
-                        className="px-6 py-4 border border-primary-black/[0.2] absolute top-8 left-1/2 -translate-x-1/2 bg-white rounded-2xl text-left">
-                        <ul className="space-y-3">
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeFilter(InstitutesTypes.IRIT)}>
-                                <FormattedMessage id="IRIT" />
-                            </li>
-                            <li className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
-                                onClick={changeFilter(InstitutesTypes.INMT)}>
-                                <FormattedMessage id="INMT" />
-                            </li>
-                        </ul>
-                    </div>
-                }
+                <DropdownMenu parent={dropdownInstituteFilter} opened={instituteFilterOpened}
+                              setOpened={setInstituteFilterOpened} className="w-[400px] px-6 py-4 border border-primary-black/[0.2] bg-white rounded-2xl text-left space-y-3">
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeFilter(InstitutesTypes.IRIT)}><FormattedMessage
+                        id="IRIT"/></DropdownMenu.Item>
+                    <DropdownMenu.Item className="hover:bg-primary-black/[0.2] cursor-pointer p-2 rounded"
+                                       onClick={changeFilter(InstitutesTypes.INMT)}><FormattedMessage
+                        id="INMT"/></DropdownMenu.Item>
+                </DropdownMenu>
             </div>
             {
                 filteredServices.length > 0
@@ -95,7 +88,8 @@ const Services = () => {
                         }
                     </div>
                     :
-                    <div className="text-center py-12 font-semibold text-primary-black/[0.2]"><FormattedMessage id="service_not_found" /></div>
+                    <div className="text-center py-12 font-semibold text-primary-black/[0.2]"><FormattedMessage
+                        id="service_not_found"/></div>
             }
         </section>
     );

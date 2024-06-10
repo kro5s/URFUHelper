@@ -1,18 +1,15 @@
 import React, {useEffect} from 'react';
-import store from "./store/store";
 import {IntlProvider} from "react-intl";
 import {messages} from "./i18n/messages";
-import {Locales} from "./types/types";
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
-import {Provider} from "react-redux";
 import RootRoute from "./routes/RootRoute";
 import ServicesRoute from "./routes/ServicesRoute";
 import ServiceRoute from "./routes/ServiceRoute";
 import QuestionsRoute from "./routes/QuestionsRoute";
 import CommunitiesRoute from "./routes/CommunitiesRoute";
 import ExperiencesRoute from "./routes/ExperiencesRoute";
-import {useAppDispatch, useAppSelector} from "./hooks/hooks";
-import {localizationsActions, selectLanguage} from "./store/slices/localizationSlice";
+import {useAppSelector} from "./hooks/hooks";
+import {selectLanguage} from "./store/slices/localizationSlice";
 
 const router = createBrowserRouter([
     {
