@@ -21,7 +21,7 @@ const Welcome = () => {
         <section className="pt-14 pb-20 md:py-28 text-center">
             <div className="my-container">
                 <img className="mx-auto px-2.5" src={require("../../../assets/images/welcome.png")}
-                     alt="Greetings in different languages"/>
+                     alt="Greetings in different languages" width="678" height="385"/>
                 <h1 className="pt-24 pb-6 text-2xl md:text-4xl font-semibold"><FormattedMessage
                     id="get_help_adaptation"/>
                 </h1>

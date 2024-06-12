@@ -20,3 +20,46 @@ html, body {
     padding: 0 15px;
     margin: 0 auto;
 }
+
+.alert-layer {
+    position: fixed;
+    z-index: 100;
+    left: 1vw;
+    bottom: 2svh;
+}
+
+/* Markdown */
+
+.markdown {
+    font-size: 1.125rem;
+
+    * + * {
+        margin-top: 20px;
+    }
+
+    h4 {
+        font-size: 1.625rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    
+    h5 {
+        font-size: 1.375rem;
+        font-weight: 600;
+        color: #FAA300;
+        text-align: center;
+    }
+
+    ul li {
+        list-style: disc inside;
+        margin-top: 10px;
+    }
+
+    ol li {
+        list-style: decimal inside;
+    }
+
+    a {
+        color: #0760ff;
+    }
+}

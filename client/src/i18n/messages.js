@@ -42,6 +42,8 @@ export const messages = {
         find_community: "Find your country study community",
         enter_community: "Enter your country name",
         community_not_found: "Community is not found",
+        share_your_experience: "Share your experience",
+        alert_error_auth: "You must be logged in!",
     },
     [Locales.RUSSIAN]: {
         services: "Сервисы",
@@ -84,6 +86,8 @@ export const messages = {
         find_community: "Найдите студенческое сообщество вашей страны",
         enter_community: "Введите название своей страны",
         community_not_found: "Сообщество не найдено",
+        share_your_experience: "Поделиться опытом",
+        alert_error_auth: "Вы должны быть авторизованы!",
     },
     [Locales.SPANISH]: {
         services: "Servicios",
@@ -126,6 +130,8 @@ export const messages = {
         find_community: "Encuentra la comunidad de estudio de tu país",
         enter_community: "Ingrese el nombre de su país",
         community_not_found: "No se encuentra la comunidad",
+        share_your_experience: "Comparte tu experiencia",
+        alert_error_auth: "¡Debes iniciar sesión!",
     },
     [Locales.ARABIAN]: {
         services: "الخدمات",
@@ -168,5 +174,7 @@ export const messages = {
         find_community: "ابحث عن مجتمع الدراسة في بلدك",
         enter_community: "أدخل اسم بلدك",
         community_not_found: "لم يتم العثور على المجتمع",
+        share_your_experience: "تبادل الخبرات الخاصة بك",
+        alert_error_auth: "يجب عليك تسجيل الدخول!",
     }
 }

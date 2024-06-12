@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Button: React.FC<Props> = ({ children, type, link, className }) => {
-    let buttonClass = `inline-flex rounded-3xl px-8 py-4 font-semibold text-xl text-white ${className ? className : ''}`;
+    let buttonClass = `inline-flex rounded-3xl px-8 py-4 font-semibold text-xl text-white ${className ?? ''}`;
 
     switch (type) {
         case ButtonTypes.ACCENT: {
