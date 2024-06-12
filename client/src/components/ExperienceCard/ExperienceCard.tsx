@@ -2,7 +2,11 @@ import React from "react";
 import {useAppSelector} from "../../hooks/hooks";
 import {selectLanguage} from "../../store/slices/localizationSlice";
 
-const ExperienceCard: React.FC<{ avatar: string; name: string; text: string; }> = ({avatar, name, text}) => {
+interface ExperienceCardProps {
+    avatar: string; name: string; text: string;
+}
+
+const ExperienceCard: React.FC<ExperienceCardProps> = ({avatar, name, text}) => {
     const language = useAppSelector(selectLanguage)
 
     return (

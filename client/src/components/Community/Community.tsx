@@ -1,6 +1,13 @@
 import React from "react";
 
-const Community: React.FC<{country: string; vkLink: string; flag: string, img: string}> = ({ country, vkLink, flag, img }) => {
+interface CommunityProps {
+    country: string;
+    vkLink: string;
+    flag: string,
+    img: string
+}
+
+const Community: React.FC<CommunityProps> = ({country, vkLink, flag, img}) => {
     return (
         <a href={vkLink} target="_blank">
             <div

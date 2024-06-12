@@ -2,14 +2,14 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import Markdown from "react-markdown";
 
-interface Props {
+interface ServiceProps {
     id: number
     img: string;
     name: string;
     content: string;
 }
 
-const ServiceCard: React.FC<Props> = ({ img, name, content, id }) => {
+const ServiceCard: React.FC<ServiceProps> = ({ img, name, content, id }) => {
     return (
         <Link to={`/services/${id}`}>
             <div className="py-6 px-8 border border-primary-black/[0.2] rounded-3xl h-full">

@@ -4,7 +4,13 @@ import {localizationsActions, selectLanguage} from "../../store/slices/localizat
 import {Locales} from "../../types/types";
 import DropdownMenu, {DropdownPosition} from "../ui/DropdownMenu/DropdownMenu";
 
-const LanguageSelect: React.FC<{className?: string, enlarged?: boolean, position?: DropdownPosition}> = ({ className, enlarged = false, position }) => {
+interface LanguageSelectProps {
+    className?: string,
+    enlarged?: boolean,
+    position?: DropdownPosition
+}
+
+const LanguageSelect: React.FC<LanguageSelectProps> = ({className, enlarged = false, position}) => {
     const dispatch = useAppDispatch()
     const locale = useAppSelector(selectLanguage)
 

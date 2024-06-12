@@ -1,9 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {Link} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
-import {Locales} from "../../../types/types";
-import {localizationsActions, selectLanguage} from "../../../store/slices/localizationSlice";
-import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import DropdownMenu, {DropdownPosition} from "../../ui/DropdownMenu/DropdownMenu";
 import LanguageSelect from "../../LanguageSelect/LanguageSelect";
 

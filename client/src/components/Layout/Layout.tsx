@@ -6,7 +6,11 @@ import Header from "../sections/Header/Header";
 import Footer from "../sections/Footer/Footer";
 import {useLocation} from "react-router-dom";
 
-const Layout: React.FC<{children: React.ReactNode}> = ({ children }) => {
+interface LayoutProps {
+    children: React.ReactNode
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
     const pathname = useLocation();
     const reportOpened = useAppSelector(selectReport);
 

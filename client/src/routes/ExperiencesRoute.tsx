@@ -5,7 +5,6 @@ import ExperienceCard from "../components/ExperienceCard/ExperienceCard";
 import {FormattedMessage, useIntl} from "react-intl";
 import {selectLanguage} from "../store/slices/localizationSlice";
 import {useGetExperiencesQuery} from "../store/slices/apiSlice";
-import Button, {ButtonTypes} from "../components/ui/Button/Button";
 import Alert from "../components/ui/Alert/Alert";
 
 const ExperiencesRoute = () => {

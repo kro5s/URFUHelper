@@ -1,6 +1,13 @@
 import React, {useState} from "react";
 
-const Question: React.FC<{ question: string; answer: string; className?: string; dark?: boolean }> = ({question, answer, className, dark}) => {
+interface QuestionProps {
+    question: string;
+    answer: string;
+    className?: string;
+    dark?: boolean
+}
+
+const Question: React.FC<QuestionProps> = ({question, answer, className, dark}) => {
     const [opened, setOpened] = useState(false);
 
     const handleAnswerOpen = () => {
@@ -8,7 +15,8 @@ const Question: React.FC<{ question: string; answer: string; className?: string;
     }
 
     return (
-        <div onClick={handleAnswerOpen} className={`text-left cursor-pointer pb-6 border-b ${dark ? "border-primary-black/[0.2]" : "border-white/[0.2]"} ${className ? className : ''}`}>
+        <div onClick={handleAnswerOpen}
+             className={`text-left cursor-pointer pb-6 border-b ${dark ? "border-primary-black/[0.2]" : "border-white/[0.2]"} ${className ? className : ''}`}>
             <div className="flex items-center justify-between">
                 <span className="font-semibold text-xl">{question}</span>
                 <svg className={opened ? "-rotate-180 transition" : 'transition'} width="15" height="8"
