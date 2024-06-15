@@ -1,2 +1,5 @@
-/server/**
+/server/node_modules
+/server/static
+/server/config.js
+/server/db.js
 /.idea/**
