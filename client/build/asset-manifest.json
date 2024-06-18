@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.751b927f.css",
+    "main.js": "/static/js/main.be53c166.js",
+    "static/media/kg.jpg": "/static/media/kg.f29faead276d7d7eef53.jpg",
+    "static/media/tj.jpg": "/static/media/tj.aeb2a1bce50e7dc901fe.jpg",
+    "static/media/iritrtf.jpg": "/static/media/iritrtf.1ec52ad1d2e97e064972.jpg",
+    "static/media/kz-KZ.png": "/static/media/kz-KZ.27bdf9bfc83aee503ed6.png",
+    "static/media/ar-SA.jpg": "/static/media/ar-SA.9549e82236623127050a.jpg",
+    "static/media/lat.jpg": "/static/media/lat.72f7d393f22a2d6dddb0.jpg",
+    "static/media/ar-SA.png": "/static/media/ar-SA.915d034edbc65715cf75.png",
+    "static/media/es.png": "/static/media/es.2193174a8b7eba6ecb92.png",
+    "static/media/kz.jpg": "/static/media/kz.f90e7be430085fa14430.jpg",
+    "static/media/kg.png": "/static/media/kg.f9fb954532b9f7eabd8a.png",
+    "static/media/welcome.png": "/static/media/welcome.57424916d91e4489c041.png",
+    "static/media/inmt.jpg": "/static/media/inmt.c7a943e32878d802039d.jpg",
+    "static/media/tj.png": "/static/media/tj.79201ef3fbfa6e1fe026.png",
+    "static/media/ExchangeExperience.svg": "/static/media/ExchangeExperience.83721cb3ed1fce6a45a54122b2589163.svg",
+    "static/media/QuestionsAnswers.svg": "/static/media/QuestionsAnswers.4916a694faadee75e5a4f339c8b0c7d5.svg",
+    "static/media/FindServices.svg": "/static/media/FindServices.527c523158781309c12456419ed1a1ae.svg",
+    "index.html": "/index.html",
+    "main.751b927f.css.map": "/static/css/main.751b927f.css.map",
+    "main.be53c166.js.map": "/static/js/main.be53c166.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.751b927f.css",
+    "static/js/main.be53c166.js"
+  ]
+}

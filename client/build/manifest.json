@@ -1,0 +1,15 @@
+{
+  "short_name": "URFU Helper",
+  "name": "Get help with adaptation in URFU",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg",
+      "sizes": "28x28"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
