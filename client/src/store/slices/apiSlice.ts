@@ -3,7 +3,7 @@ import {IExperience, IQuestion, IService, Locales} from "../../types/types";
 
 export const apiSlice = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({baseUrl: "http://localhost:8080/api"}),
+    baseQuery: fetchBaseQuery({baseUrl: "/api"}),
     endpoints: builder => ({
         getServices: builder.query<IService[], Locales>({
             query: (locale) => `/services?language=${locale}`

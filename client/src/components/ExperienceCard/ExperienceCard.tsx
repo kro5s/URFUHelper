@@ -12,7 +12,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({avatar, name, text}) => 
     return (
         <blockquote className="p-10 rounded-[24px] border border-black/[0.2] text-left">
             <div className="flex items-center gap-x-6">
-                <img src={`http://localhost:8080/${avatar}`} alt={name} className="size-16 rounded-full object-cover"/>
+                <img src={`/images/${avatar}`} alt={name} className="size-16 rounded-full object-cover"/>
                 <span className="font-bold text-2xl">{name}</span>
                 <img src={require(`../../assets/flags/${language}.png`)} alt="Flag" className="w-6 h-4 rounded"/>
             </div>

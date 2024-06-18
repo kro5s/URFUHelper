@@ -15,7 +15,7 @@ const ServiceRoute = () => {
     const [service, setService] = useState<IService>()
 
     async function fetchService() {
-        const response = await fetch(`http://localhost:8080/api/services/${params.serviceId}?language=${language}`)
+        const response = await fetch(`/api/services/${params.serviceId}?language=${language}`)
         const json = await response.json()
 
         setService(json)
@@ -32,7 +32,7 @@ const ServiceRoute = () => {
                     {
                         service ?
                             <>
-                                <img src={"http://localhost:8080/" + service.img} alt={service.name} className="size-24 object-contain"/>
+                                <img src={"/images/" + service.img} alt={service.name} className="size-24 object-contain"/>
                                 <h1 className="font-semibold text-4xl py-10">{service.name}</h1>
                                 <div className={`markdown w-full ${language === Locales.ARABIAN ? "text-right" : ''}`}>
                                     <Markdown remarkPlugins={[remarkBreaks]} rehypePlugins={[rehypeRaw]}>{service.content}</Markdown>

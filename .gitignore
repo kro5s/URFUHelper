@@ -3,3 +3,6 @@
 /server/config.js
 /server/db.js
 /.idea/**
+.env
+postgres
+static
